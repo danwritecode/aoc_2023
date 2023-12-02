@@ -12,19 +12,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc_2023"
-version = "0.1.0"
-dependencies = [
- "day1",
- "day2",
- "regex",
-]
-
-[[package]]
-name = "day1"
-version = "0.1.0"
-
-[[package]]
 name = "day2"
 version = "0.1.0"
 dependencies = [

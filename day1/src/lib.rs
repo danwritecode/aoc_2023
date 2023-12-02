@@ -57,8 +57,6 @@ pub fn part_two() -> i32 {
                 .map(|c| c.1)
                 .collect::<Vec<char>>();
 
-            println!("{:?}", chars);
-
             let first = chars.first().unwrap();
             let last = chars.last().unwrap();
             let combined = format!("{}{}", first, last);
