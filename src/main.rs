@@ -4,7 +4,7 @@ extern crate day3;
 extern crate day4;
 
 fn main() {
-    let res = day4::part_two();
+    let res = day3::part_one();
 
     println!("{}", res);
 }
