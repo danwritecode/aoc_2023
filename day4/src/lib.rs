@@ -17,25 +17,20 @@ pub fn part_one() -> i32 {
 
 pub fn part_two() -> i32 {
     let input = include_str!("../input");
-    let mut lines = input.lines().collect::<Vec<&str>>();
+    let lines = input.lines().collect::<Vec<&str>>();
+    let mut counts = vec![1; lines.len()];
 
-    for i in 0..lines.len() {
-        let game = Game::new(lines[i]);
+    for (li, l) in lines.iter().enumerate() {
+        let game = Game::new(l);
         let matches = game.calc_matches();
-        let match_slice = lines[i + 1..i + matches + 1].to_vec();
+        let ct = counts[li];
 
-        println!("game {} has {} matches | slice: {:?}", game.id, matches, match_slice);
-
-        for (mli, ml) in match_slice.iter().enumerate() {
-            lines.insert(mli + i, ml);
+        for i in 0..matches {
+            counts[i + li + 1] += ct;
         }
-
-        println!("new lines: {:?}", lines);
     }
 
-    // println!("line len: {}", lines.len());
-
-    todo!()
+    counts.iter().sum::<i32>()
 }
 
 
@@ -60,22 +55,14 @@ impl Game {
     }
 
     fn calc_winning_total(&self) -> i32 {
-        let matching = &self.picked
-            .iter()
-            .map(|p| {
-                if self.winning.contains(p) {
-                    return 1;
-                }
-                return 0;
-            })
-            .sum::<u32>();
+        let matching = &self.calc_matches();
 
-        if *matching == 0 as u32 {
+        if *matching == 0 {
             return 0;
         }
 
         let base: i32 = 2;
-        let total = base.pow(matching - 1);
+        let total = base.pow(*matching as u32 - 1);
         println!("total game {} = {}", &self.id, total);
 
         total
