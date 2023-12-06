@@ -3,8 +3,10 @@ extern crate day2;
 extern crate day3;
 extern crate day4;
 
+extern crate day6;
+
 fn main() {
-    let res = day3::part_one();
+    let res = day6::part_two();
 
     println!("{}", res);
 }
